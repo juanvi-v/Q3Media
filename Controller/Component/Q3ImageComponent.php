@@ -317,6 +317,31 @@ class Q3ImageComponent extends Component
 		return $i;
 	}
 
+	/**
+	 * Returns dimensions on given image file
+	 * @param string $id
+	 * @param string $subfolder
+	 * @return array(int, int)
+	 */
+	function getImageSize($id, $subfolder=null){
+
+		$image=$this->getImage($id,$subfolder);
+		if(!empty($image)){
+			$folder=Q3MEDIA_IMG_UPLOAD_FOLDER;
+			if(!empty($subfolder)){
+				$folder.=$subfolder.DS;
+			}
+			list($imgWidth, $imgHeight, $type) = getimagesize($folder.$image);
+		}
+		else{
+			$imgWidth=null;
+			$imgHeight=null;
+		}
+
+		return array($imgWidth,$imgHeight);
+	}
+
+
 	function image_type_to_extension($imagetype)
 	{
 		if(empty($imagetype)) return false;
