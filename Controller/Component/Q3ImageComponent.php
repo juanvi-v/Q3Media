@@ -30,6 +30,20 @@ class Q3ImageComponent extends Component
 		return $file;
 	}
 
+	public function deleteImage($id,$subfolder=''){
+		$folder=Q3MEDIA_IMG_UPLOAD_FOLDER;
+		if(!empty($subfolder)){
+			$folder.=$subfolder.DS;
+		}
+		if(file_exists($folder.$id)){
+			unlink($folder.id);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 
 	//function getResized($id, &$mime, $imgFolder, $newWidth=false, $newHeight=false, $bgcolor="000000", $resample=true, $cache=false, $cacheFolder=false, $cacheClear=false, $tempFolder=false, $crop=true, $crop_direction='N', $enlarge=true,$resize=false,$watermark=false)
 	function getResized($id, &$mime, $options=array()){
