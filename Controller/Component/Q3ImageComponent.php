@@ -240,10 +240,11 @@ class Q3ImageComponent extends Component
 						return false;
 						break;
 				}
-
-				sscanf($bgcolor, "%2x%2x%2x", $red, $green, $blue);
-				$newColor = ImageColorAllocate($newImage, $red, $green, $blue);
-				imagefill($newImage,0,0,$newColor);
+				if(!empty($bgcolor)){
+					sscanf($bgcolor, "%2x%2x%2x", $red, $green, $blue);
+					$newColor = ImageColorAllocate($newImage, $red, $green, $blue);
+					imagefill($newImage,0,0,$newColor);
+				}
 				/*
 				 debug($newWidth.' - '.$newHeigh);
 				debug($applyWidth.' - '.$applyHeight);
