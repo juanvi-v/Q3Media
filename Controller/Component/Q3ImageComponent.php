@@ -245,6 +245,9 @@ class Q3ImageComponent extends Component
 					$newColor = ImageColorAllocate($newImage, $red, $green, $blue);
 					imagefill($newImage,0,0,$newColor);
 				}
+				else{
+					imagealphablending($newImage, false);
+				}
 				/*
 				 debug($newWidth.' - '.$newHeigh);
 				debug($applyWidth.' - '.$applyHeight);
@@ -305,6 +308,10 @@ class Q3ImageComponent extends Component
 						imagegif($newImage, $dest);
 						break;
 					case 'png' :
+						if(empty($bgcolor)){
+							imagealphablending($newImage,false);
+							imagesavealpha($newImage,true);
+						}
 						imagepng($newImage, $dest);
 						break;
 					case 'jpg' :
